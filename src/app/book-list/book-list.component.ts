@@ -1,13 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Book, Image, Author } from "../shared/book";
 
 @Component({
   selector: "bs-book-list",
   templateUrl: "./book-list.component.html",
-  styleUrls: ["./book-list.component.css"]
+  styleUrls: []
 })
 export class BookListComponent implements OnInit {
   books: Book[];
+
+  @Output() showDetailsEvent = new EventEmitter<Book>();
 
   constructor() {}
 
@@ -49,5 +51,13 @@ export class BookListComponent implements OnInit {
     ];
 
     console.log(this.books);
+  }
+  btnHandler() {
+    console.log("clicked");
+    this.books[1].title = "klick ÄNDERUNG";
+  }
+
+  showDetails(book: Book) {
+    this.showDetailsEvent.emit(book);
   }
 }
