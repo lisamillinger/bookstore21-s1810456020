@@ -6,19 +6,13 @@ import { BookStoreService } from "../shared/book-store.service";
   templateUrl: "./book-list.component.html",
   styles: []
 })
-
 export class BookListComponent implements OnInit {
   books: Book[];
-  @Output() showDetailsEvent = new EventEmitter<Book>();
 
   constructor(private bs: BookStoreService) {}
-  
   ngOnInit() {
-    this.bs.getAll().subscribe(res => this.books = res);
-    console.log('observer registred'); 
+    //asynchron
+    this.bs.getAll().subscribe(res => (this.books = res));
+    console.log("observer registered");
   }
-  
-
-
-
 }

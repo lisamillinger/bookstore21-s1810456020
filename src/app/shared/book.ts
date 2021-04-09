@@ -2,6 +2,7 @@ import { Image } from "./image";
 export { Image } from "./image";
 import { Author } from "./author";
 export { Author } from "./author";
+
 export class Book {
   constructor(
     public id: number,
