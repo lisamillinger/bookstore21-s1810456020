@@ -1,0 +1,25 @@
+<p>
+login works!
+</p>
+
+<div *ngIf="!isLoggendIn()">
+  <h1>Login</h1>
+
+  <form class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="field">
+      <label>E-Mail</label>
+      <input type="email" id="username" formControlName="username">
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" formControlName="password">
+
+    </div>
+    <button type="submit" class="ui button" [disabled]="loginForm.invalid">Login</button>
+  </form>
+</div>
+
+<div *ngIf="isLoggendIn()">
+  <button type="button" class="ui button" (click)="logout()">Logout</button>
+</div>
