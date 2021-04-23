@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../shared/authentication.service";
 
+interface Response {
+  access_token: string;
+}
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -29,6 +33,7 @@ export class LoginComponent implements OnInit {
     if (val.username && val.password) {
       this.authService.login(val.username, val.password).subscribe(res => {
         console.log(res);
+        this.authService.setLocalStorage((res as Response).access_token);
       });
     }
   }
