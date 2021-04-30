@@ -16,7 +16,7 @@ export class BookDetailsComponent implements OnInit {
     private bs: BookStoreService,
     private route: ActivatedRoute,
     private router: Router,
-    private authServive: AuthenticationService
+    public authServive: AuthenticationService
   ) {}
 
   ngOnInit(): void {
