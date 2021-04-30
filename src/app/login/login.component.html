@@ -27,4 +27,11 @@
     <button type="submit" class="ui button" [disabled]="loginForm.invalid">Login</button>
   </form>
 
+
+
+</div>
+
+<div *ngIf="isLoggedIn()">
+  <button type="button" class="ui button" (click)="logout()">Logout</button>
+
 </div>

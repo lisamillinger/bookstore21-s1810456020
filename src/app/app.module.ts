@@ -11,9 +11,10 @@ import { BookDetailsComponent } from "./book-details/book-details.component";
 import { BookStoreService } from "./shared/book-store.service";
 import { HomeComponent } from "./home/home.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BookFormComponent } from './book-form/book-form.component';
 import { LoginComponent } from './login/login.component';
+import { TokenInterceptorService } from './shared/token-interceptor.service';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
@@ -27,6 +28,10 @@ import { LoginComponent } from './login/login.component';
     LoginComponent
   ],
   bootstrap: [AppComponent],
-  providers: [BookStoreService]
+  providers: [BookStoreService, TokenInterceptorService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }]
 })
 export class AppModule {}
